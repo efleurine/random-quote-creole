@@ -8,6 +8,14 @@ const routes = [
             return res.view('index');
         }
     },
+
+    {
+        method: 'GET',
+        path: '/validation',
+        handler: (req, res) => {
+            return res.view('verification.html');
+        }
+    },
     {
         method: 'GET',
         path: '/quotes',
@@ -43,6 +51,21 @@ const routes = [
             })
                 .then((quote) => quote)
                 .catch((error) => error);
+        }
+    },
+
+    {
+        method: 'POST',
+        path: '/verify',
+        handler: (req, res) => {
+            const id = req.payload.id;
+            return Quotes.update({ _id: id }, { $set: { isVerified: true }}, (err, data) => {
+                if (err) {
+                    return { errorMessage: 'Not able to update the Quote' };
+                }
+
+                return { message: 'Data has successfully updated!' };
+            });
         }
     },
 

@@ -5,11 +5,16 @@ const handlebars = require('handlebars');
 const mongoose = require('mongoose');
 
 
-mongoose.connect('mongodb://localhost/haiti_quote');
+mongoose.connect('mongodb://localhost/haiti_quote', { useNewUrlParser: true });
 
 const server = Hapi.server({
     host: 'localhost',
-    port: process.env.PORT || 9000
+    port: process.env.PORT || 9000,
+    routes: {
+        cors: {
+            origin: ['*']
+        }
+    }
 });
 
 
