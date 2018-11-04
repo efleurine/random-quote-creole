@@ -1,4 +1,4 @@
-
+const Quotes = require('./models/quotes');
 
 const routes = [
     {
@@ -10,9 +10,39 @@ const routes = [
     },
     {
         method: 'GET',
-        path: '/about',
-        handler: (req, res) => {
-            return 'About Page';
+        path: '/quotes',
+        handler: (req, reply) => {
+            return Quotes.find({})
+                .then((quotes) => quotes)
+                .catch((error) => error);
+        }
+    },
+
+    {
+        method: 'GET',
+        path: '/random',
+        handler: (req, reply) => {
+            return Quotes.find({})
+                .then((quotes) => {
+                    const randomQuote = Math.floor(Math.random() * quotes.length);
+                    return quotes[randomQuote]
+                })
+                .catch((error) => error);
+        }
+    },
+
+    {
+        method: 'POST',
+        path: '/quote',
+        handler: (req, reply) => {
+            const { quote, author } = req.payload;
+
+            return Quotes.create({
+                author,
+                quote
+            })
+                .then((quote) => quote)
+                .catch((error) => error);
         }
     },
 

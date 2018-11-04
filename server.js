@@ -2,10 +2,14 @@ const Hapi = require('hapi');
 const plugins = require('./plugins');
 const routes = require('./routes');
 const handlebars = require('handlebars');
+const mongoose = require('mongoose');
+
+
+mongoose.connect('mongodb://localhost/haiti_quote');
 
 const server = Hapi.server({
     host: 'localhost',
-    port: 9000
+    port: process.env.PORT || 9000
 });
 
 
@@ -20,7 +24,8 @@ const start = async () => {
                 html: handlebars
             },
             relativeTo: __dirname,
-            path: 'views'
+            path: 'views',
+            isCached: false
         });
 
         server.route(routes);
