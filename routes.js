@@ -20,7 +20,17 @@ const routes = [
         method: 'GET',
         path: '/quotes',
         handler: (req, reply) => {
-            return Quotes.find({})
+            return Quotes.find({ isVerified: true })
+                .then((quotes) => quotes)
+                .catch((error) => error);
+        }
+    },
+
+    {
+        method: 'GET',
+        path: '/unverified/quotes',
+        handler: (req, reply) => {
+            return Quotes.find({ isVerified: false })
                 .then((quotes) => quotes)
                 .catch((error) => error);
         }
@@ -30,7 +40,7 @@ const routes = [
         method: 'GET',
         path: '/random',
         handler: (req, reply) => {
-            return Quotes.find({})
+            return Quotes.find({ isVerified: true })
                 .then((quotes) => {
                     const randomQuote = Math.floor(Math.random() * quotes.length);
                     return quotes[randomQuote]
