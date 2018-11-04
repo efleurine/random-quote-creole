@@ -4,8 +4,13 @@ const routes = require('./routes');
 const handlebars = require('handlebars');
 const mongoose = require('mongoose');
 
-
-mongoose.connect('mongodb://localhost/haiti_quote', { useNewUrlParser: true });
+let MONGODB_URL;
+if (process.env.MONGODB_URI) {
+    MONGODB_URL = process.env.MONGODB_URI;
+} else {
+    MONGODB_URL = 'mongodb://localhost/haiti_quote';
+}
+mongoose.connect(MONGODB_URL, { useNewUrlParser: true });
 
 const server = Hapi.server({
     host: 'localhost',
