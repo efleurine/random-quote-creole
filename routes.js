@@ -20,7 +20,7 @@ const routes = [
         method: 'GET',
         path: '/quotes',
         handler: (req, reply) => {
-            return Quotes.find({ isVerified: true })
+            return Quotes.find({ })
                 .then((quotes) => quotes)
                 .catch((error) => error);
         }
@@ -46,6 +46,19 @@ const routes = [
                     return quotes[randomQuote]
                 })
                 .catch((error) => error);
+        }
+    },
+
+    {
+        method: 'DELETE',
+        path: '/delete/quote',
+        handler: (req, res) => {
+            const id = req.payload.id;
+
+            return Quotes.deleteOne({ _id: id }, function (err) {
+                if (err) return { errorMessage: 'Not able to delete quote' };
+                return { message: 'Quote has been deleted' }
+              });
         }
     },
 

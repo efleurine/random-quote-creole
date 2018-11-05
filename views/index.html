@@ -5,29 +5,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <title>App </title>
 </head>
 
 <body>
-    <h1>Byenveni nan Quote API</h1>
+    <div class="container">
+        <h1>Bon jan Pwovèb API an Kreyòl </h1>
 
 
-    <p>Kote ou kapab poste yon Quote epi ou Kapab Wè'l live</p>
+        <p>Kote ou kapab poste bon jan pwovèb Kreyòl ki pral disponib sou <a href="/quotes" target="_blank">API </a> nou an</p>
 
-    <form>
-        <div>
-            <label for="">Author</label>
-            <input type="text" placeholder="author name" id="author">
-        </div>
+        <form>
+            <div class="form-group">
+                <label for="author">Otè</label>
+                <input type="text" class="form-control" id="author" aria-describedby="emailHelp" placeholder="Ajoute non otè pwovèb lan">
+            </div>
 
-        <div>
-            <label for="">Quote</label>
-            <textarea name="quote" cols="30" rows="10" id="quote"></textarea>
-        </div>
 
-        <button id="addQuote">Submit</button>
-    </form>
+            <div class="form-group">
+                <label for="addQuote">Pwovèb</label>
+                <textarea name="quote" cols="30" rows="10" id="quote" class="form-control" id="addQuote" rows="3" placeholder="Ekri pwovèb"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" id="addQuote">Ajoute</button>
+        </form>
+    </div>
 
     <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
     <script src='app.js'></script>
