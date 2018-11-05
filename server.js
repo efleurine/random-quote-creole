@@ -13,7 +13,7 @@ if (process.env.MONGODB_URI) {
 mongoose.connect(MONGODB_URL, { useNewUrlParser: true });
 
 const server = Hapi.server({
-    host: 'localhost',
+    host: '0.0.0.0',
     port: process.env.PORT || 3000,
     routes: {
         cors: {
@@ -29,6 +29,9 @@ const start = async () => {
     try {
         await server.register(plugins); // register plugins
 
+        server.route(routes);
+
+
         server.views({
             engines: {
                 html: handlebars
@@ -38,7 +41,6 @@ const start = async () => {
             isCached: false
         });
 
-        server.route(routes);
 
 
         await server.start(); // starting the server
@@ -49,5 +51,12 @@ const start = async () => {
 
     console.log('Server running at: ', server.info.uri);
 }
+
+process.on('unhandledRejection', (err) => {
+
+    console.log(err);
+    process.exit(1);
+});
+
 
 start();
