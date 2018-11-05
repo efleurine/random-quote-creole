@@ -18,7 +18,5 @@
     "mongoose": "^5.3.9",
     "vision": "^5.4.2"
   },
-  "engines": {
-    "node": "9.2.1"
-  }
+  "engines": {}
 }

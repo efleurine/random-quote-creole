@@ -14,7 +14,7 @@ mongoose.connect(MONGODB_URL, { useNewUrlParser: true });
 
 const server = Hapi.server({
     host: 'localhost',
-    port: ~~process.env.PORT || 3000,
+    port: process.env.PORT || 3000,
     routes: {
         cors: {
             origin: ['*']
